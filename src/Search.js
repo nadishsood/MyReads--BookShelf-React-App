@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import * as BooksAPI from "./BooksAPI";
-import BooksList from './BooksList';
 import Book from './Book';
 
 class Search extends React.Component{
@@ -39,13 +38,16 @@ class Search extends React.Component{
        if(book.authors){
          var authors = book.authors.join(", ");
        }
+       if(book.imageLinks){
+          var image = book.imageLinks.smallThumbnail;
+       }
        return (
          <Book
            updateShelf={this.props.updateShelf}
            key={book.id}
            id={book.id}
            shelf={book.shelf}
-           backgroundImage={book.imageLinks.smallThumbnail}
+           backgroundImage={image}
            bookTitle={book.title}
            bookAuthor={authors || " "} />
        );
