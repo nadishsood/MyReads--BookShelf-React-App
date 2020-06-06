@@ -46,7 +46,11 @@ class App extends React.Component {
               exact
               render={props => <BooksApp {...props} books={this.state.books} updateShelf={this.updateShelfOnChange} />}
             ></Route>
-            <Route path="/search" exact component={Search}></Route>
+            <Route 
+              path="/search" 
+              exact
+              render={props => <Search {...props} books={this.state.books} updateShelf= {this.updateShelfOnChange} />}
+            ></Route>
           </div>
         </BrowserRouter>
       </div>
@@ -59,3 +63,5 @@ export default App;
 
 
 //sending props directly down to the book bypassing the booksList
+//when i go back from search after moving a book to the shelf, the homepage component does
+// not rerender despite it's state getting changed
