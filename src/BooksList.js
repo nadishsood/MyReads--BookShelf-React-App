@@ -2,11 +2,14 @@ import React from "react";
 import Book from './Book';
 
 class BooksList extends React.Component{
+
   renderBooks=()=>{
       return this.props.books.map(book => {
         return (
           <Book 
+            updateShelf={this.props.updateShelf}
             key={book.id}
+            id={book.id}
             shelf={book.shelf}
             backgroundImage={book.imageLinks.smallThumbnail}
             bookTitle={book.title}
@@ -18,7 +21,6 @@ class BooksList extends React.Component{
     
   }
   render(){
-    console.log(this.props.books)
     return (
       <div>
         <div className="bookshelf">

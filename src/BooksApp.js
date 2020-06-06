@@ -13,9 +13,27 @@ class BooksApp extends React.Component{
           </div>
           <div className="list-books-content">
             <div>
-              <BooksList books={this.props.books.filter((book)=>{return book.shelf === "currentlyReading"})} bookshelfTitle="Currently Reading" />
-              <BooksList books={this.props.books.filter((book)=>{return book.shelf === "wantToRead"})} bookshelfTitle="Want To Read" />
-              <BooksList books={this.props.books.filter((book)=>{return book.shelf === "read"})} bookshelfTitle="Read" />
+              <BooksList
+                books={this.props.books.filter(book => {
+                  return book.shelf === "currentlyReading";
+                })}
+                bookshelfTitle="Currently Reading"
+                updateShelf={this.props.updateShelf}
+              />
+              <BooksList
+                books={this.props.books.filter(book => {
+                  return book.shelf === "wantToRead";
+                })}
+                bookshelfTitle="Want To Read"
+                updateShelf={this.props.updateShelf}
+              />
+              <BooksList
+                books={this.props.books.filter(book => {
+                  return book.shelf === "read";
+                })}
+                bookshelfTitle="Read"
+                updateShelf={this.props.updateShelf}
+              />
             </div>
           </div>
           <AddSearch />

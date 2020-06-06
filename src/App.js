@@ -9,17 +9,34 @@ import BooksApp from './BooksApp';
 class App extends React.Component {
   state = {
     books: []
-  }
-  componentDidMount(){
-    BooksAPI.getAll().then((res)=>{
-      this.setState({books: res});
+  };
+  componentDidMount() {
+    BooksAPI.getAll().then(res => {
+      this.setState({ books: res });
     });
   }
-  // updateShelfOnChange=()=>{
-  //   BooksAPI.
-  // }
-  render(){
- 
+  
+  updateItem(id, bookAttributes) {
+  var index = this.state.books.findIndex(x=> x.id === id);
+  if (index === -1){}
+    // handle error
+  else{
+    this.setState({
+      books: [
+         ...this.state.books.slice(0,index),
+         Object.assign({}, this.state.books[index], bookAttributes),
+         ...this.state.books.slice(index+1)
+      ]
+    });
+  }
+}
+  updateShelfOnChange = ({book, shelf}) => {
+    BooksAPI.update(book, shelf).then((res)=>{
+      this.updateItem(book.id, {shelf: shelf})
+    })
+  };
+
+  render() {
     return (
       <div>
         <BrowserRouter>
@@ -27,8 +44,8 @@ class App extends React.Component {
             <Route
               path="/"
               exact
-              render={props => <BooksApp {...props} books={this.state.books} />}>
-            </Route>
+              render={props => <BooksApp {...props} books={this.state.books} updateShelf={this.updateShelfOnChange} />}
+            ></Route>
             <Route path="/search" exact component={Search}></Route>
           </div>
         </BrowserRouter>
@@ -37,6 +54,8 @@ class App extends React.Component {
   }
 }
 
+
 export default App;
 
 
+//sending props directly down to the book bypassing the booksList
