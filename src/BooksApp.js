@@ -4,10 +4,7 @@ import AddSearch from './AddSearch';
 
 class BooksApp extends React.Component{
 
-    
     render(){
-    console.log(`jfalksfals: ${this.props.books}`);
-
     return (
       <div className="app">
         <div className="list-books">
@@ -16,9 +13,9 @@ class BooksApp extends React.Component{
           </div>
           <div className="list-books-content">
             <div>
-              <BooksList bookshelfTitle="Currently Reading" />
-              <BooksList bookshelfTitle="Want To Read" />
-              <BooksList bookshelfTitle="Read" />
+              <BooksList books={this.props.books.filter((book)=>{return book.shelf === "currentlyReading"})} bookshelfTitle="Currently Reading" />
+              <BooksList books={this.props.books.filter((book)=>{return book.shelf === "wantToRead"})} bookshelfTitle="Want To Read" />
+              <BooksList books={this.props.books.filter((book)=>{return book.shelf === "read"})} bookshelfTitle="Read" />
             </div>
           </div>
           <AddSearch />
