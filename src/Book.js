@@ -1,6 +1,17 @@
 import React from 'react';
 
-const Book = (props) => {
+
+class Book extends React.Component{
+    state = {
+        selectedValue: this.props.shelf
+    }
+
+    handleChange=(event)=> {
+    
+    this.setState({selectedValue: event.target.value});
+
+  }
+  render(){
     return (
       <li>
         <div className="book">
@@ -11,11 +22,11 @@ const Book = (props) => {
                 width: 128,
                 height: 193,
                 backgroundImage:
-                  `url("${props.backgroundImage}")`
+                  `url("${this.props.backgroundImage}")`
               }}
             ></div>
             <div className="book-shelf-changer">
-              <select>
+              <select value={this.state.selectedValue} onChange={this.handleChange}>
                 <option value="move" disabled>
                   Move to...
                 </option>
@@ -26,13 +37,12 @@ const Book = (props) => {
               </select>
             </div>
           </div>
-          <div className="book-title">{props.bookTitle}</div>
-          <div className="book-authors">{props.bookAuthor}</div>
+          <div className="book-title">{this.props.bookTitle}</div>
+          <div className="book-authors">{this.props.bookAuthor}</div>
         </div>
       </li>
-    );
+    )}
 }
 
-export default Book
+export default Book;
 
-// backgroundImage, bookTitle, bookAuthor

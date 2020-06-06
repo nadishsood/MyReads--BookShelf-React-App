@@ -7,9 +7,10 @@ class BooksList extends React.Component{
         return (
           <Book 
             key={book.id}
+            shelf={book.shelf}
             backgroundImage={book.imageLinks.smallThumbnail}
             bookTitle={book.title}
-            bookAuthor={book.authors}
+            bookAuthor={book.authors.join(", ")}
           />
         );
       });
@@ -17,15 +18,14 @@ class BooksList extends React.Component{
     
   }
   render(){
-    // console.log(this.props.books)
+    console.log(this.props.books)
     return (
       <div>
         <div className="bookshelf">
           <h2 className="bookshelf-title">{this.props.bookshelfTitle}</h2>
-          <div className="bookshelf-books">
+          <div className="bookshelf-books">  
             <ol className="books-grid">
              {this.renderBooks()}
-              
             </ol>
           </div>
         </div>
