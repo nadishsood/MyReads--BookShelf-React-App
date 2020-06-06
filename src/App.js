@@ -7,12 +7,25 @@ import Search from './Search';
 import BooksApp from './BooksApp';
 
 class App extends React.Component {
+  state = {
+    books: []
+  }
+  componentDidMount(){
+    BooksAPI.getAll().then((res)=>{
+      this.setState({books: res});
+    });
+  }
   render(){
+ 
     return (
       <div>
         <BrowserRouter>
           <div>
-            <Route path="/" exact component={BooksApp}></Route>
+            <Route
+              path="/"
+              exact
+              render={props => <BooksApp {...props} books={this.state.books} />}>
+            </Route>
             <Route path="/search" exact component={Search}></Route>
           </div>
         </BrowserRouter>

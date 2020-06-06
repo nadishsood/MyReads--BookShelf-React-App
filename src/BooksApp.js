@@ -3,7 +3,11 @@ import BooksList from './BooksList';
 import AddSearch from './AddSearch';
 
 class BooksApp extends React.Component{
+
+    
     render(){
+    console.log(`jfalksfals: ${this.props.books}`);
+
     return (
       <div className="app">
         <div className="list-books">
@@ -12,9 +16,9 @@ class BooksApp extends React.Component{
           </div>
           <div className="list-books-content">
             <div>
-              <BooksList />
-              <BooksList />
-              <BooksList />
+              <BooksList bookshelfTitle="Currently Reading" />
+              <BooksList bookshelfTitle="Want To Read" />
+              <BooksList bookshelfTitle="Read" />
             </div>
           </div>
           <AddSearch />

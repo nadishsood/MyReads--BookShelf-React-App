@@ -6,7 +6,7 @@ class BooksList extends React.Component{
     return (
       <div>
         <div className="bookshelf">
-          <h2 className="bookshelf-title">Currently Reading</h2>
+          <h2 className="bookshelf-title">{this.props.bookshelfTitle}</h2>
           <div className="bookshelf-books">
             <ol className="books-grid">
               <Book />
@@ -20,3 +20,5 @@ class BooksList extends React.Component{
 }
 
 export default BooksList;
+
+
