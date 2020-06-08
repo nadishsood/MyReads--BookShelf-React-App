@@ -12,7 +12,6 @@ class Book extends React.Component{
     this.props.updateShelf({book: this.props.book, shelf: event.target.value});
 }
   render(){
-    //   console.log(this.props.book);
     return (
       <li>
         <div className="book">

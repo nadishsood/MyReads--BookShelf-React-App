@@ -5,7 +5,6 @@ class BooksList extends React.Component{
 
 
   renderBooks= ()=>{
-    console.log(`from renderbooks: ${this.props.books.length}`)
       return this.props.books.map(book => {
         if (book.authors) {
           var authors = book.authors.join(", ");
@@ -29,7 +28,6 @@ class BooksList extends React.Component{
       
   }
   render(){ 
-    console.log('booksList got rendered', this.props.books.length);
     return (
       <div key={this.props.books}>
         <div className="bookshelf">

@@ -35,7 +35,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.count();
     return (
       <div>
         <BrowserRouter>
@@ -73,6 +72,3 @@ class App extends React.Component {
 export default App;
 
 
-//sending props directly down to the book bypassing the booksList
-//when i go back from search after moving a book to the shelf, the homepage component does
-// not rerender despite it's state getting changed
