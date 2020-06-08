@@ -10,33 +10,32 @@ class App extends React.Component {
   state = {
     books: []
   };
+  componentDidUpdate = (prevProps, prevState) => {
+    if (this.state.books !== prevState.books) {
+      // fetch the new product based and set it to the state of the component
+      this.setState(this.state.books);
+    }
+  };
+
   componentDidMount() {
     BooksAPI.getAll().then(res => {
       this.setState({ books: res });
     });
   }
-  
-  updateItem(id, bookAttributes) {
-  var index = this.state.books.findIndex(x=> x.id === id);
-  if (index === -1){}
-    // handle error
-  else{
-    this.setState({
-      books: [
-         ...this.state.books.slice(0,index),
-         Object.assign({}, this.state.books[index], bookAttributes),
-         ...this.state.books.slice(index+1)
-      ]
+
+  updateShelfOnChange = ({ book, shelf }) => {
+    BooksAPI.update(book, shelf).then(res => {
+      book.shelf=shelf;
+      this.setState(state => ({
+        books: state.books
+          .filter(stateBook => stateBook.id !== book.id)
+          .concat([book])
+      }));
     });
-  }
-}
-  updateShelfOnChange = ({book, shelf}) => {
-    BooksAPI.update(book, shelf).then((res)=>{
-      this.updateItem(book.id, {shelf: shelf})
-    })
   };
 
   render() {
+    console.count();
     return (
       <div>
         <BrowserRouter>
@@ -44,12 +43,24 @@ class App extends React.Component {
             <Route
               path="/"
               exact
-              render={props => <BooksApp {...props} books={this.state.books} updateShelf={this.updateShelfOnChange} />}
+              render={props => (
+                <BooksApp
+                  {...props}
+                  books={this.state.books}
+                  updateShelf={this.updateShelfOnChange}
+                />
+              )}
             ></Route>
-            <Route 
-              path="/search" 
+            <Route
+              path="/search"
               exact
-              render={props => <Search {...props} books={this.state.books} updateShelf= {this.updateShelfOnChange} />}
+              render={props => (
+                <Search
+                  {...props}
+                  books={this.state.books}
+                  updateShelf={this.updateShelfOnChange}
+                />
+              )}
             ></Route>
           </div>
         </BrowserRouter>

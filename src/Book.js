@@ -1,15 +1,18 @@
 import React from 'react';
 
+
 class Book extends React.Component{
     state = {
         selectedValue: this.props.shelf
     }
-
+    
     handleChange=(event)=> {
-    this.props.updateShelf({book:{ id: this.props.id}, shelf: event.target.value});
-    this.setState({selectedValue: event.target.value});
+    this.setState({ selectedValue: event.target.value });
+    
+    this.props.updateShelf({book: this.props.book, shelf: event.target.value});
 }
   render(){
+    //   console.log(this.props.book);
     return (
       <li>
         <div className="book">

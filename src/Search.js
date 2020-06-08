@@ -43,6 +43,7 @@ class Search extends React.Component{
        }
        return (
          <Book
+           book={book}
            updateShelf={this.props.updateShelf}
            key={book.id}
            id={book.id}
