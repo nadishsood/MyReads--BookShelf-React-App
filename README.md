@@ -1,5 +1,7 @@
 # My Reads 
 
+![Image of Yaktocat](https://i.ibb.co/r3vqsSW/Laptops-2.png)
+
 For MyReads project, I create a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. The project uses React to build the application and provides an API server and client library that is used to persist information as you interact with the application.
 
 I built this project as the first project towards the completion of ***Udacity's React Nanodegree***. 
